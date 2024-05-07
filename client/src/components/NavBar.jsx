@@ -24,5 +24,6 @@ const NavBar = () => {
       </div>
     </Wrapper>
   );
+};
 
 export default NavBar;
