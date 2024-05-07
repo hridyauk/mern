@@ -17,6 +17,7 @@ const DashboardLayout = () => {
     setIsDarkTheme(newDarkTheme);
     document.body.classList.toggle("dark-theme", newDarkTheme);
     localStorage.setItem("darkTheme", newDarkTheme);
+    const [isDarkTheme, setIsDarkTheme] = useState(false);
   };
 
   const toggleSidebar = () => {
@@ -53,5 +54,7 @@ const DashboardLayout = () => {
     </DashboardContext.Provider>
   );
 };
+
+export const useDashboardContext = () => useContext(DashboardContext);
 
 export default DashboardLayout;
