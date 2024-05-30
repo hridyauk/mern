@@ -76,6 +76,20 @@ app.patch("/api/v1/jobs/:id", (req, res) => {
   res.status(200).json({ msg: "job modified", job });
 });
 
+// delete single job
+app.delete("/api/v1/jobs/:id", (req, res) => {
+  const { id } = req.params;
+  const job = jobs.find((job) => job.id === id);
+  if (!job) {
+    res.status(404).json({ msg: `no job with ${id}` });
+    return;
+  }
+
+  const newJobs = jobs.filter((job) => job.id !== id);
+
+  res.status(200).json({ msg: "job deleted" });
+});
+
 const port = process.env.PORT || 5100;
 
 app.listen(port, () => {
