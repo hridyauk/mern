@@ -39,7 +39,7 @@ export const validateIdParam = withValidationErrors([
     if (!isValidId) throw new BadRequestError("Invalid MongoDB Id");
 
     const job = await Job.findById(value);
-
+    
     if (!job) throw new NotFoundError(`no job with id ${value}`);
     const isAdmin = req.user.role === "admin"
     const isOwner = req.user.userId === job.createdBy.toString()
@@ -69,7 +69,6 @@ export const validateRegisterInput = withValidationErrors([
 ]);
 
 export const validateLoginInput = withValidationErrors([
-  body("name").notEmpty().withMessage("name is required"),
   body("email").notEmpty().withMessage("email is required").isEmail().withMessage("invalid email format"),
   body("password").notEmpty().withMessage("password is required"),
 ]);
