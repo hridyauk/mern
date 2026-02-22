@@ -18,6 +18,8 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   const isValidUser = user && (await comparePassword(req.body.password, user.password));
+  console.log("auth control",user, isValidUser);
+  
   if (!isValidUser) throw new UnauthenticatedError("Invalid credentials");
 
   const token = createJWT({ userId: user._id, role: user.role });
